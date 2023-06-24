@@ -19,9 +19,11 @@ jobs:
         with:
           # intentionally don't set it to "recursive" as zsa's submodules are
           # managed via their Makefile.
-          submodules: true
+          submodules: false
 
       - run: |
+          git submodule init
+          git submodule update
           ls -a
           ls zsa-qmk_firmware
           cp -r moonlander_brtcst zsa-qmk_firmware/moonlander_brtcst
