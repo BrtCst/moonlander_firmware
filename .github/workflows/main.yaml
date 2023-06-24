@@ -27,6 +27,7 @@ jobs:
           git clone -b $QMK_BRANCH https://github.com/zsa/qmk_firmware.git
           cp -r moonlander_brtcst qmk_firmware/keyboards/moonlander/keymaps/brtcst
           cd qmk_firmware
+          make git-submodules
           make moonlander:brtcst
 
       - uses: actions/upload-artifact@v3
