@@ -24,6 +24,7 @@ jobs:
           sudo apt install -y git python3-pip
           python3 -m pip install --user qmk
           qmk setup zsa/qmk_firmware -b $QMK_BRANCH -y
+          mkdir qmk_firmware/keyboards/moonlander/keymaps/brtcst
           cp -r moonlander_brtcst qmk_firmware/keyboards/moonlander/keymaps/brtcst
           cd qmk_firmware
           make moonlander:brtcst
