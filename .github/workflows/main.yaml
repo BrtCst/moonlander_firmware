@@ -23,11 +23,11 @@ jobs:
 
       - run: |
           cp -r moonlander_brtcst zsa-qmk_firmware
-          make -C zsa_firmware
-          cd zsa_firmware && qmk setup -y
+          make -C zsa-qmk_firmware
+          cd zsa-qmk_firmware && qmk setup -y
 
       - uses: actions/upload-artifact@v3
         with:
           name: moonlander_brtcst.bin
-          path: zsa_firmware/.build/moonlander_brtcst.bin
+          path: zsa-qmk_firmware/.build/moonlander_brtcst.bin
           retention-days: 3
