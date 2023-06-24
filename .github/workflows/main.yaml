@@ -25,7 +25,7 @@ jobs:
           ls -a
           ls qmk_firmware
           cp -r moonlander_brtcst qmk_firmware/moonlander_brtcst
-          make -C qmk_firmware
+          make build
           cd qmk_firmware && qmk setup -y
 
       - uses: actions/upload-artifact@v3
