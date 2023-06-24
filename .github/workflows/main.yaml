@@ -1,5 +1,8 @@
 name: Build
 
+env:
+  QMK_BRANCH: firmware22
+
 on:
   workflow_dispatch:
 
@@ -16,22 +19,17 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
-        with:
-          # intentionally don't set it to "recursive" as zsa's submodules are
-          # managed via their Makefile.
-          submodules: false
 
       - run: |
-          git submodule init
-          git submodule update
+          git clone -b $QMK_BRANCH https://github.com/zsa/qmk_firmware.git
           ls -a
-          ls zsa-qmk_firmware
-          cp -r moonlander_brtcst zsa-qmk_firmware/moonlander_brtcst
-          make -C zsa-qmk_firmware
-          cd zsa-qmk_firmware && qmk setup -y
+          ls qmk_firmware
+          cp -r moonlander_brtcst qmk_firmware/moonlander_brtcst
+          make -C qmk_firmware
+          cd qmk_firmware && qmk setup -y
 
       - uses: actions/upload-artifact@v3
         with:
           name: moonlander_brtcst.bin
-          path: zsa-qmk_firmware/.build/moonlander_brtcst.bin
+          path: qmk_firmware/.build/moonlander_brtcst.bin
           retention-days: 3
