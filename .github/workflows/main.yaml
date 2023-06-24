@@ -22,7 +22,7 @@ jobs:
           submodules: true
 
       - run: |
-          ls
+          ls -a
           ls zsa-qmk_firmware
           cp -r moonlander_brtcst zsa-qmk_firmware/moonlander_brtcst
           make -C zsa-qmk_firmware
